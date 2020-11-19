@@ -2,17 +2,17 @@
 
     abstract class Pessoa {
         
-        private $id;
-        private $nome;
-        private $salario;
+        protected $id;
+        protected $nome;
+        protected $salario;
 
-        public function __get($atributo) {
-            return $this->$atributo;
-        }
+        // public function __get($atributo) {
+        //     return $this->$atributo;
+        // }
 
-        public function __set($atributo, $valor) {
-            $this->$atributo = $valor;
-        }
+        // public function __set($atributo, $valor) {
+        //     $this->$atributo = $valor;
+        // }
         
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+    require_once "../model/pessoa.php";
+
     class Treinador extends Pessoa {
 
         private $qntVitoria;
