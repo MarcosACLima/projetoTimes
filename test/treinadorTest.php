@@ -7,13 +7,18 @@
     $conexao = new Conexao();
     $treinadorDao = new TreinadorDao($conexao);
 
-    // Listar Todos os Treinadores
-    echo "<h3>Listar todos os treinadores</h3>";
-
+    echo "<h3>Lista com todos os treinadores</h3>";
     $treinadores = $treinadorDao->listarTudo();
     echo "<pre>";
     print_r($treinadores);
     echo "</pre>";
 
 
+    echo "<h3>Pesquisar treinador por Id</h3>";
+    $treinador = $treinadorDao->pesquisarId(2);
+    print_r($treinador);
+
+
+    
+    
 ?>

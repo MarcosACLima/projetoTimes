@@ -9,7 +9,7 @@
 
         public function __construct($nome, $salario) {
             $this->nome = $nome;
-            $this->salaro = $salario;
+            $this->salario = $salario;
         }
 
         public function __get($atributo) {

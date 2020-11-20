@@ -16,7 +16,18 @@
         }
 
         public function pesquisarId($id) {
+            $sql = 'SELECT * FROM atleta WHERE id = :id';
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(':id', $id);
+            $stmt->execute();
 
+            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+            $atleta = new Atleta($resultado->nome, $resultado->idade);
+            $atleta->__set('id', $resultado->id);
+            $atleta->__set('altura', $resultado->altura);
+            $atleta->__set('peso', $resultado->peso);
+            $atleta->__set('salario', $resultado->salario);
+            return $atleta; 
         }
 
         public function pesquisarNome($nome) {
@@ -36,6 +47,7 @@
                 $atleta->__set('id', $objeto->id);
                 $atleta->__set('altura', $objeto->altura);
                 $atleta->__set('peso', $objeto->peso);
+                $atleta->__set('salario', $objeto->salario);
                 $atletas[] = $atleta;
             }
             return $atletas;
