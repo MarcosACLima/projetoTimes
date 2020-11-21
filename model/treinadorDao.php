@@ -11,8 +11,21 @@
             $this->conexao = $conexao->conectar();
         }
 
-        public function salvar($treinador) {
-
+        public function salvar(Treinador $treinador) {
+            if($treinador->__get('id') == 0) {
+                $sql = 'INSERT INTO treinador (nome, salario, qntVitoria, bonusSalario) VALUES (:nome, :salario, :qntVitoria, :bonusSalario)';
+            } else {
+                $sql = 'UPDATE treinador SET nome = :nome, salario = :salario, qntVitoria = :qntVitoria, bonusSalario = :bonusSalario WHERE id = :id';
+            }
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(':nome', $treinador->__get('nome'));
+            $stmt->bindValue(':salario', $treinador->__get('salario'));
+            $stmt->bindValue(':qntVitoria', $treinador->__get('qntVitoria'));
+            $stmt->bindValue(':bonusSalario', $treinador->__get('bonusSalario'));
+            if($treinador->__get('id') != 0) {
+                $stmt->bindValue(':id', $treinador->__get('id'));
+            }
+            $stmt->execute();
         }
 
         public function pesquisarId($id) {

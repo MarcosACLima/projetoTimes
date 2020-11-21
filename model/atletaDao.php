@@ -11,8 +11,22 @@
             $this->conexao = $conexao->conectar();
         }
 
-        public function salvar($atleta) {
-
+        public function salvar(Atleta $atleta) {
+            if($atleta->__get('id') == 0) {
+                $sql = 'INSERT INTO atleta (nome, salario, idade, altura, peso) VALUES (:nome, :salario, :idade, :altura, :peso)';
+            } else {
+                $sql = 'UPDATE atleta SET nome = :nome, salario = :salario, idade = :idade, altura = :altura, peso = :peso WHERE id = :id';
+            }
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(':nome', $atleta->__get('nome'));
+            $stmt->bindValue(':salario', $atleta->__get('salario'));
+            $stmt->bindValue(':idade', $atleta->__get('idade'));
+            $stmt->bindValue(':altura', $atleta->__get('altura'));
+            $stmt->bindValue(':peso', $atleta->__get('peso'));
+            if($atleta->__get('id') != 0) {
+                $stmt->bindValue(':id', $atleta->__get('id'));
+            }
+            $stmt->execute();
         }
 
         public function pesquisarId($id) {
