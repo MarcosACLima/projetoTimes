@@ -18,6 +18,9 @@
     $treinador = $treinadorDao->pesquisarId(2);
     print_r($treinador);
 
+    echo "<h3>Pesquisar treinador por Nome</h3>";
+    $treinador = $treinadorDao->pesquisarNome('Felipe');
+    print_r($treinador);
 
      // 3 - Salvar - inserir treinador
     // echo "<h3>Salvando novo treinador </h3>";

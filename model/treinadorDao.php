@@ -43,7 +43,17 @@
         }
 
         public function pesquisarNome($nome) {
-            
+            $sql = 'SELECT * FROM treinador WHERE nome = :nome';
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindValue(':nome', $nome);
+            $stmt->execute();
+
+            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+            $treinador = new Treinador($resultado->nome, $resultado->salario);
+            $treinador->__set('id', $resultado->id);
+            $treinador->__set('qntVitoria', $resultado->qntVitoria);
+            $treinador->__set('bonusSalario', $resultado->bonusSalario);
+            return $treinador;
         }
 
         public function listarTudo() {
