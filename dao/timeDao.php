@@ -1,5 +1,11 @@
 <?php
 
+    require_once "../model/time.php";
+    require_once "../db/conexao.php";
+    require_once "../model/treinador.php";
+    require_once "../dao/treinadorDao.php";
+    require_once "../dao/atletaDao.php";
+
     class TimeDao {
 
         private $conexao;

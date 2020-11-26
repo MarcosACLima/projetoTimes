@@ -1,10 +1,10 @@
 <?php
 
     require_once "../model/time.php";
-    require_once "../model/timeDao.php";
+    require_once "../dao/timeDao.php";
     require_once "../db/conexao.php";
-    require_once "../model/atletaDao.php";
-    require_once "../model/treinadorDao.php";
+    require_once "../dao/atletaDao.php";
+    require_once "../dao/treinadorDao.php";
 
     $conexao = new Conexao();
     $timeDao = new TimeDao($conexao);
@@ -51,7 +51,7 @@
     // print_r($timeDao->salvar($timeSalvar));
     // echo "</pre>";
             
-    
+
     // // Salvar - Teste alterar
     // echo "<h3>Time antes de alterar</h3>";
     // $timeUp = $timeDao->pesquisarId(4);

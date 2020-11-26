@@ -1,7 +1,7 @@
 <?php
 
     require_once "../model/treinador.php";
-    require_once "../model/treinadorDao.php";
+    require_once "../dao/treinadorDao.php";
     require_once "../db/conexao.php";
 
     $conexao = new Conexao();
