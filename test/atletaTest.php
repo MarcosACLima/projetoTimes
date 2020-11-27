@@ -13,13 +13,19 @@
     print_r($atletas);
     echo "</pre>";
 
+
     echo "<h3>Pesquisar atleta por Id</h3>";
     $atleta = $atletaDao->pesquisarId(2);
+    echo "<pre>";
     print_r($atleta);
+    echo "</pre>";
 
-    echo "<h3>Pesquisar atleta por Nome</h3>";
-    $atleta = $atletaDao->pesquisarNome('Ronaldo');
-    print_r($atleta);
+
+    echo "<h3>Pesquisar atletas por Nome</h3>";
+    $atletas = $atletaDao->pesquisarNome('ro');
+    echo "<pre>";
+    print_r($atletas);
+    echo "</pre>";
 
 
      // 3 - Salvar - inserir atleta

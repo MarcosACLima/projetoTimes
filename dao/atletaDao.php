@@ -45,18 +45,24 @@
         }
 
         public function pesquisarNome($nome) {
-            $sql = 'SELECT * FROM atleta WHERE nome = :nome';
+            $sql = 'SELECT * FROM atleta WHERE nome LIKE :nome';
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue(':nome', $nome);
+            $stmt->bindValue(':nome', "%$nome%");
             $stmt->execute();
 
-            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
-            $atleta = new Atleta($resultado->nome, $resultado->idade);
-            $atleta->__set('id', $resultado->id);
-            $atleta->__set('altura', $resultado->altura);
-            $atleta->__set('peso', $resultado->peso);
-            $atleta->__set('salario', $resultado->salario);
-            return $atleta;
+            $resultados = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $atletas = array();
+
+            foreach($resultados as $id => $objeto) {
+                $atleta = new Atleta($objeto->nome, $objeto->idade);
+                $atleta->__set('id', $objeto->id);
+                $atleta->__set('altura', $objeto->altura);
+                $atleta->__set('peso', $objeto->peso);
+                $atleta->__set('salario', $objeto->salario);
+                $atletas[] = $atleta;
+            }
+            
+            return $atletas;
         }
 
         public function listarTudo() {

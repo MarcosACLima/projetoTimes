@@ -21,10 +21,10 @@
     print_r($time);
     echo "</pre>";
 
-    echo "<h3>Pesquisar time por Nome</h3>";
-    $time = $timeDao->pesquisarNome('Real Dev');
+    echo "<h3>Pesquisar times por Nome</h3>";
+    $times = $timeDao->pesquisarNome('ja');
     echo "<pre>";
-    print_r($time);
+    print_r($times);
     echo "</pre>";
 
 

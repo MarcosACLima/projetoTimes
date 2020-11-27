@@ -16,11 +16,17 @@
 
     echo "<h3>Pesquisar treinador por Id</h3>";
     $treinador = $treinadorDao->pesquisarId(2);
+    echo "<pre>";
     print_r($treinador);
+    echo "</pre>";
 
-    echo "<h3>Pesquisar treinador por Nome</h3>";
-    $treinador = $treinadorDao->pesquisarNome('Felipe');
-    print_r($treinador);
+
+    echo "<h3>Pesquisar treinadores por Nome</h3>";
+    $treinadores = $treinadorDao->pesquisarNome('r');
+    echo "<pre>";
+    print_r($treinadores);
+    echo "</pre>";
+
 
      // 3 - Salvar - inserir treinador
     // echo "<h3>Salvando novo treinador </h3>";

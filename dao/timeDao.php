@@ -78,25 +78,32 @@
         }
 
         public function pesquisarNome($nome) {
-            $sql = 'SELECT * FROM time WHERE nome = :nome';
+            $sql = 'SELECT * FROM time WHERE nome LIKE :nome';
             $stmt = $this->conexao->prepare($sql);
-            $stmt->bindValue(':nome', $nome);
+            $stmt->bindValue(':nome', "%$nome%");
             $stmt->execute();
             
-            $resultado = $stmt->fetch(PDO::FETCH_OBJ);
+            $resultados = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $times = array();
             
             $conexao = new Conexao();
             $treinadorDao = new TreinadorDao($conexao);
             $atletaDao = new AtletaDao($conexao);
             
-            $treinador = $treinadorDao->pesquisarId($resultado->idTreinador);
-            $atletas = $atletaDao->pesquisarAtletas($resultado->id);
 
-            $time = new Time($resultado->nome, $resultado->cidade, $treinador, $atletas);
-            $time->__set('id', $resultado->id);
-            $time->__set('qntVitoria', $resultado->qntVitoria);
-            $time->__set('anoFundacao', $resultado->anoFundacao);
-            return $time;
+            foreach($resultados as $id => $objeto){
+                $treinador = $treinadorDao->pesquisarId($objeto->idTreinador);
+                $atletas = $atletaDao->pesquisarAtletas($objeto->id);
+                
+                $time = new Time($objeto->nome, $objeto->cidade, $treinador, $atletas);
+                $time->__set('id', $objeto->id);
+                $time->__set('qntVitoria', $objeto->qntVitoria);
+                $time->__set('anoFundacao', $objeto->anoFundacao);
+
+                $times[] = $time;
+            }
+
+            return $times;
         }
 
         public function listarTudo() {
