@@ -27,7 +27,7 @@
     print_r($treinadores);
     echo "</pre>";
 
-
+    echo "<p><b>*Comentado os testes do metodo salvar</b></p>";
      // 3 - Salvar - inserir treinador
     // echo "<h3>Salvando novo treinador </h3>";
     // $treinadorNovo = new Treinador('Novo Treinador', 12500);

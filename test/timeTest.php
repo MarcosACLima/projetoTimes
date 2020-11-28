@@ -27,7 +27,7 @@
     print_r($times);
     echo "</pre>";
 
-
+    echo "<p><b>*Comentado os testes do metodo salvar</b></p>";
     // iniciando teste de Salvar
     // echo "<h3>Testando Salvar</h3>";
 

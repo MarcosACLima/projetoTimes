@@ -28,6 +28,7 @@
     echo "</pre>";
 
 
+    echo "<p><b>*Comentado os testes do metodo salvar</b></p>";
      // 3 - Salvar - inserir atleta
     // echo "<h3>Salvando novo atleta </h3>";
     // $atletaNovo = new Atleta('Novo Atleta', 28);
